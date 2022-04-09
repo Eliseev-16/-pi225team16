@@ -42,10 +42,10 @@ public class Calc extends HttpServlet {
 			}
 				
 		public void setAsRequestAttributesAndCalculate(HttpServletRequest request) {
-			request.setAttribute("first_side_result", first_calc);
-			request.setAttribute("second_side_result", second_calc);
-			request.setAttribute("third_side_result", third_calc);
-			request.setAttribute("fourth_side_result", four_calc);
+			request.setAttribute("first_side", first_calc);
+			request.setAttribute("second_side", second_calc);
+			request.setAttribute("third_side", third_calc);
+			request.setAttribute("fourth_side", four_calc);
 			int first_try;
 			int second_try;
 			int third_try;
@@ -62,10 +62,10 @@ public class Calc extends HttpServlet {
 				third_try=0;
 				four_try=0;
 			}
-			result = first_try + second_try + third_try + four_try;
+			
+			result= first_try + second_try + third_try + four_try;
 			request.setAttribute("result", result);
 		}
-		
 	}
 	
 	
