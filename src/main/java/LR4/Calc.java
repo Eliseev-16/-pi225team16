@@ -62,8 +62,7 @@ public class Calc extends HttpServlet {
 				third_try=0;
 				four_try=0;
 			}
-			
-			result=first_try + second_try + third_try=0; + four_try=0;;
+			result = first_try + second_try + third_try + four_try;
 			request.setAttribute("result", result);
 		}
 		
