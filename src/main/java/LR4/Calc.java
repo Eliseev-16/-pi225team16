@@ -8,9 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Calc.
+ */
 @WebServlet(name="Calc", urlPatterns="/JavaCalc") //
 public class Calc extends HttpServlet {
 
+	/**
+	 * Do post.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestCalc Calc = RequestCalc.fromRequestParameters(request);
 		Calc.setAsRequestAttributesAndCalculate(request);
@@ -19,13 +31,31 @@ public class Calc extends HttpServlet {
 		
 	}
 	
+	/**
+	 * The Class RequestCalc.
+	 */
 	private static class RequestCalc {
+		
+		/** The first calc. */
 		private final String first_calc;
+		
+		/** The second calc. */
 		private final String second_calc;
+		
+		/** The third calc. */
 		private final String third_calc;
+		
+		/** The four calc. */
 		private final String four_calc;
-		private int result;
 						
+		/**
+		 * Instantiates a new request calc.
+		 *
+		 * @param first the first
+		 * @param second the second
+		 * @param third the third
+		 * @param four the four
+		 */
 		private RequestCalc (String first, String second, String third, String four) {
 			this.first_calc = first;
 			this.second_calc = second;
@@ -33,6 +63,12 @@ public class Calc extends HttpServlet {
 			this.four_calc = four;
 			}
 		
+		/**
+		 * From request parameters.
+		 *
+		 * @param request the request
+		 * @return the request calc
+		 */
 		public static RequestCalc fromRequestParameters(HttpServletRequest request) {
 			return new RequestCalc(
 			request.getParameter("first_side"),
@@ -41,20 +77,21 @@ public class Calc extends HttpServlet {
 			request.getParameter("fourth_side"));
 			}
 				
+		/**
+		 * Sets the as request attributes and calculate.
+		 *
+		 * @param request the new as request attributes and calculate
+		 */
 		public void setAsRequestAttributesAndCalculate(HttpServletRequest request) {
-			request.setAttribute("first_side", first_calc);
-			request.setAttribute("second_side", second_calc);
-			request.setAttribute("third_side", third_calc);
-			request.setAttribute("fourth_side", four_calc);
-			int first_try;
-			int second_try;
-			int third_try;
-			int four_try;
+			double first_try;
+			double second_try;
+			double third_try;
+			double four_try;
 			try { 
-			first_try=Integer.parseInt(first_calc);
-			second_try=Integer.parseInt(second_calc);
-			third_try=Integer.parseInt(third_calc);
-			four_try=Integer.parseInt(four_calc);
+			first_try=Double.parseDouble(first_calc);
+			second_try=Double.parseDouble(second_calc);
+			third_try=Double.parseDouble(third_calc);
+			four_try=Double.parseDouble(four_calc);
 			}
 			catch (NumberFormatException e) {
 				first_try=0;
@@ -62,9 +99,13 @@ public class Calc extends HttpServlet {
 				third_try=0;
 				four_try=0;
 			}
-			
-			result= first_try + second_try + third_try + four_try;
-			request.setAttribute("result", result);
+			Calculate calculate = new Calculate();
+			calculate.setSides(first_try, second_try, third_try, four_try);
+			request.setAttribute("first_side", calculate.getFirst());
+			request.setAttribute("second_side", calculate.getSecond());
+			request.setAttribute("third_side", calculate.getThird());
+			request.setAttribute("fourth_side", calculate.getFourth());
+			request.setAttribute("result", calculate.getResult());
 		}
 	}
 	
