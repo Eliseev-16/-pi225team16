@@ -14,6 +14,6 @@ public abstract class ForData {
 	
 	public abstract double getResult();
 	
-	public abstract double result();
+	//public abstract double result();
 	
 }
