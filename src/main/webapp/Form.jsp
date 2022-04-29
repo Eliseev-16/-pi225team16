@@ -31,6 +31,7 @@
 </head>
 <body>
 	<h1>Калькулятор для расчета периметра трапеции</h1>
+	<h3>Рассчет ведется в миллиметрах</h3>
 	<form action="${pageContext.request.contextPath}/JavaCalc" method="post">
 		<label for="first_side">Сторона a:</label>
 		<input class="input" type="text" name="first_side" id="first_side" value="${first_side}"><br>
